@@ -1,0 +1,65 @@
+.verify-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.verify-container {
+  text-align: center;
+  background: white;
+  padding: 60px 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  max-width: 450px;
+  width: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
+.verify-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 3rem;
+}
+
+.verify-icon.loading {
+  background: #e2e8f0;
+  color: var(--gray);
+  animation: spin 1s linear infinite;
+}
+
+.verify-icon.success {
+  background: #c6f6d5;
+  color: var(--success);
+}
+
+.verify-icon.error {
+  background: #fed7d7;
+  color: var(--danger);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.verify-container h1 {
+  font-size: 1.75rem;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.verify-container p {
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+
+.verify-container .btn {
+  min-width: 200px;
+}

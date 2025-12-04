@@ -1,0 +1,257 @@
+.events-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.events-header h1 {
+  font-size: 2rem;
+  color: var(--dark);
+}
+
+.year-selector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.year-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.year-btn:hover {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 4px;
+}
+
+.current-year {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.verification-warning {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.verification-warning p {
+  color: #92400e;
+  font-weight: 500;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.months-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.month-card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.month-header:hover {
+  background: #f7fafc;
+}
+
+.month-header.active {
+  background: var(--gradient);
+  color: white;
+}
+
+.month-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.month-icon {
+  font-size: 1.25rem;
+}
+
+.month-info h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.event-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.month-header:not(.active) .event-count {
+  background: #e2e8f0;
+  color: var(--gray);
+}
+
+.month-events {
+  padding: 20px 24px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.no-events {
+  text-align: center;
+  color: var(--gray);
+  padding: 20px;
+}
+
+.event-card {
+  background: #f7fafc;
+  border-radius: 8px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateX(4px);
+}
+
+.event-category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 6px 16px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 8px 0 8px 0;
+}
+
+.event-content {
+  padding-top: 24px;
+}
+
+.event-content h3 {
+  font-size: 1.125rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.event-description {
+  color: var(--gray);
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.event-details span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.registered-badge {
+  background: #c6f6d5;
+  color: #22543d;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.full-badge {
+  background: #fed7d7;
+  color: #822727;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-actions {
+    padding-top: 0;
+  }
+
+  .events-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
