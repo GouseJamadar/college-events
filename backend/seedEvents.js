@@ -18,22 +18,275 @@ const eventSchema = new mongoose.Schema({
 const Event = mongoose.model('Event', eventSchema);
 
 const events = [
-  // July 2025
+  // ==================== JANUARY 2025 ====================
+  {
+    title: "New Year Celebration",
+    description: "Welcome 2025 with joy and enthusiasm! Cultural performances, games, and new year resolutions board.",
+    date: new Date(2025, 0, 1),
+    time: "10:00 AM - 12:00 PM",
+    venue: "College Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Even Semester Begins",
+    description: "College reopens for even semester. Regular classes commence for II, IV, and VI semester students.",
+    date: new Date(2025, 0, 6),
+    time: "9:00 AM",
+    venue: "All Classrooms",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "National Youth Day",
+    description: "Celebrate Swami Vivekananda Jayanthi with inspirational talks, debates, and youth-centric activities.",
+    date: new Date(2025, 0, 12),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Seminar Hall",
+    category: "cultural",
+    maxParticipants: 300,
+    isActive: true
+  },
+  {
+    title: "Republic Day Celebration",
+    description: "Celebrate India's 76th Republic Day with flag hoisting, parade, cultural programs, and patriotic performances.",
+    date: new Date(2025, 0, 26),
+    time: "8:00 AM - 12:00 PM",
+    venue: "College Ground",
+    category: "cultural",
+    maxParticipants: 500,
+    isActive: true
+  },
+
+  // ==================== FEBRUARY 2025 ====================
+  {
+    title: "Tech Fest 2025",
+    description: "Annual Technical Festival featuring coding competitions, hackathons, robotics, project exhibitions, and tech talks.",
+    date: new Date(2025, 1, 7),
+    time: "9:00 AM - 5:00 PM",
+    venue: "College Campus",
+    category: "technical",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Hackathon - Code24",
+    description: "24-hour coding marathon. Build innovative solutions, win exciting prizes! Teams of 2-4 members.",
+    date: new Date(2025, 1, 8),
+    time: "9:00 AM (24 hours)",
+    venue: "Computer Labs",
+    category: "technical",
+    maxParticipants: 100,
+    isActive: true
+  },
+  {
+    title: "First IA - Even Semester",
+    description: "First Internal Assessment for even semester students. Prepare well!",
+    date: new Date(2025, 1, 17),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Examination Halls",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "Rose Day & Friendship Week",
+    description: "Celebrate Rose Day with fun activities, gift exchanges, and friendship bonding events.",
+    date: new Date(2025, 1, 7),
+    time: "11:00 AM - 2:00 PM",
+    venue: "College Campus",
+    category: "cultural",
+    maxParticipants: 300,
+    isActive: true
+  },
+
+  // ==================== MARCH 2025 ====================
+  {
+    title: "International Women's Day",
+    description: "Celebrate women achievers with inspiring talks, felicitation ceremony, and cultural programs.",
+    date: new Date(2025, 2, 8),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Main Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Holi Celebration",
+    description: "Festival of colors! Celebrate Holi with organic colors, music, dance, and traditional sweets.",
+    date: new Date(2025, 2, 14),
+    time: "10:00 AM - 1:00 PM",
+    venue: "College Ground",
+    category: "cultural",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "Second IA - Even Semester",
+    description: "Second Internal Assessment for even semester. Mid-semester examinations.",
+    date: new Date(2025, 2, 17),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Examination Halls",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "Ugadi Celebration",
+    description: "Celebrate Kannada New Year with traditional programs, Panchanga Shravana, and cultural events.",
+    date: new Date(2025, 2, 30),
+    time: "10:00 AM - 12:00 PM",
+    venue: "College Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+
+  // ==================== APRIL 2025 ====================
+  {
+    title: "Annual Sports Meet 2025",
+    description: "Inter-class sports competition. Events include athletics, cricket, volleyball, badminton, chess, and more!",
+    date: new Date(2025, 3, 5),
+    time: "8:00 AM - 5:00 PM",
+    venue: "Sports Ground",
+    category: "sports",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Sports Meet - Day 2",
+    description: "Finals and closing ceremony of Annual Sports Meet with prize distribution.",
+    date: new Date(2025, 3, 6),
+    time: "8:00 AM - 5:00 PM",
+    venue: "Sports Ground",
+    category: "sports",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Ambedkar Jayanthi",
+    description: "Commemorate Dr. B.R. Ambedkar's birth anniversary with special programs and tribute.",
+    date: new Date(2025, 3, 14),
+    time: "10:00 AM - 12:00 PM",
+    venue: "Seminar Hall",
+    category: "cultural",
+    maxParticipants: 300,
+    isActive: true
+  },
+  {
+    title: "Third IA - Even Semester",
+    description: "Third and final Internal Assessment for even semester students.",
+    date: new Date(2025, 3, 21),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Examination Halls",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "Annual Day & Cultural Fest",
+    description: "Grand Annual Day celebration with cultural performances, prize distribution, and chief guest address.",
+    date: new Date(2025, 3, 26),
+    time: "4:00 PM - 9:00 PM",
+    venue: "Main Auditorium",
+    category: "cultural",
+    maxParticipants: 600,
+    isActive: true
+  },
+
+  // ==================== MAY 2025 ====================
+  {
+    title: "Project Exhibition",
+    description: "Final year project exhibition. Showcase your innovative projects to industry experts and faculty.",
+    date: new Date(2025, 4, 3),
+    time: "10:00 AM - 4:00 PM",
+    venue: "Exhibition Hall",
+    category: "technical",
+    maxParticipants: 200,
+    isActive: true
+  },
+  {
+    title: "End Semester Examinations Begin",
+    description: "Even semester final examinations commence. Best of luck to all students!",
+    date: new Date(2025, 4, 10),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Examination Halls",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "Farewell Party - VI Semester",
+    description: "Bid farewell to outgoing VI semester students with performances, memories, and best wishes.",
+    date: new Date(2025, 4, 17),
+    time: "3:00 PM - 7:00 PM",
+    venue: "Main Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Summer Vacation Begins",
+    description: "End of academic activities. Summer vacation starts. See you in July!",
+    date: new Date(2025, 4, 31),
+    time: "After Exams",
+    venue: "College Campus",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+
+  // ==================== JUNE 2025 ====================
+  {
+    title: "Summer Internship Program",
+    description: "Optional summer internship program for interested students. Industry exposure and practical learning.",
+    date: new Date(2025, 5, 2),
+    time: "9:00 AM - 5:00 PM",
+    venue: "Partner Companies",
+    category: "technical",
+    maxParticipants: 50,
+    isActive: true
+  },
+  {
+    title: "Workshop: Web Development Bootcamp",
+    description: "5-day intensive web development workshop. Learn HTML, CSS, JavaScript, and React basics.",
+    date: new Date(2025, 5, 16),
+    time: "10:00 AM - 4:00 PM",
+    venue: "Computer Lab",
+    category: "workshop",
+    maxParticipants: 60,
+    isActive: true
+  },
+  {
+    title: "Admission Process - New Batch",
+    description: "Admission process for new academic year 2025-26 begins. Counseling and document verification.",
+    date: new Date(2025, 5, 23),
+    time: "10:00 AM - 4:00 PM",
+    venue: "Admin Office",
+    category: "academic",
+    maxParticipants: 200,
+    isActive: true
+  },
+
+  // ==================== JULY 2025 ====================
   {
     title: "Orientation Program for I Semester",
-    description: "Welcome orientation program for all first semester BCA students. Learn about college culture, facilities, and academic expectations.",
-    date: new Date("2025-07-30"),
+    description: "Welcome orientation program for all first semester BCA students. Learn about college culture, facilities, and academic expectations. Program runs from 30th July to 2nd August.",
+    date: new Date(2025, 6, 30),
     time: "9:00 AM - 4:00 PM",
     venue: "Main Auditorium",
     category: "academic",
     maxParticipants: 200,
     isActive: true
   },
-  // August 2025
+
+  // ==================== AUGUST 2025 ====================
   {
     title: "College Reopening - III & V Semester",
     description: "Official reopening of college for third and fifth semester students. Regular classes commence.",
-    date: new Date("2025-08-04"),
+    date: new Date(2025, 7, 4),
     time: "9:00 AM",
     venue: "All Classrooms",
     category: "academic",
@@ -41,9 +294,9 @@ const events = [
     isActive: true
   },
   {
-    title: "Outbound Program",
-    description: "Adventure and team-building outbound program for first-year students. Includes outdoor activities and workshops.",
-    date: new Date("2025-08-10"),
+    title: "Outbound Program for First Year",
+    description: "Adventure and team-building outbound program for first-year students. Includes outdoor activities, workshops, and fun games.",
+    date: new Date(2025, 7, 10),
     time: "7:00 AM - 6:00 PM",
     venue: "Offsite Location",
     category: "cultural",
@@ -52,8 +305,8 @@ const events = [
   },
   {
     title: "Independence Day Celebration",
-    description: "Celebrate India's Independence Day with flag hoisting, cultural programs, and patriotic performances.",
-    date: new Date("2025-08-15"),
+    description: "Celebrate India's 79th Independence Day with flag hoisting, cultural programs, and patriotic performances.",
+    date: new Date(2025, 7, 15),
     time: "8:00 AM - 12:00 PM",
     venue: "College Ground",
     category: "cultural",
@@ -62,8 +315,8 @@ const events = [
   },
   {
     title: "Investiture Ceremony & Freshers Day",
-    description: "Official investiture ceremony for student council followed by Freshers Day celebrations. Welcome the new batch with performances and fun activities.",
-    date: new Date("2025-08-20"),
+    description: "Official investiture ceremony for student council followed by grand Freshers Day celebrations. Welcome the new batch!",
+    date: new Date(2025, 7, 20),
     time: "10:00 AM - 5:00 PM",
     venue: "Main Auditorium",
     category: "cultural",
@@ -72,29 +325,30 @@ const events = [
   },
   {
     title: "Ganesha Chaturthi Celebration",
-    description: "Celebrate Ganesha Chaturthi with pooja, cultural programs, and festivities.",
-    date: new Date("2025-08-27"),
+    description: "Celebrate Ganesha Chaturthi with pooja, cultural programs, and festivities on campus.",
+    date: new Date(2025, 7, 27),
     time: "10:00 AM - 1:00 PM",
     venue: "College Premises",
     category: "cultural",
     maxParticipants: 300,
     isActive: true
   },
-  // September 2025
+
+  // ==================== SEPTEMBER 2025 ====================
   {
-    title: "Eid-Milad Celebration",
-    description: "Celebration of Eid-Milad with cultural harmony and community gathering.",
-    date: new Date("2025-09-05"),
-    time: "11:00 AM - 1:00 PM",
-    venue: "Seminar Hall",
+    title: "Teacher's Day Celebration",
+    description: "Honor our beloved teachers with performances, gratitude cards, and special cultural programs.",
+    date: new Date(2025, 8, 5),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Main Auditorium",
     category: "cultural",
-    maxParticipants: 200,
+    maxParticipants: 400,
     isActive: true
   },
   {
-    title: "First Internal Assessment (IA)",
-    description: "First Internal Assessment examinations for all semesters. Prepare well and give your best!",
-    date: new Date("2025-09-11"),
+    title: "First Internal Assessment (IA) - Odd Semester",
+    description: "First Internal Assessment examinations begin. Runs from 11th to 13th September.",
+    date: new Date(2025, 8, 11),
     time: "10:00 AM - 1:00 PM",
     venue: "Examination Halls",
     category: "academic",
@@ -102,20 +356,31 @@ const events = [
     isActive: true
   },
   {
-    title: "First IA Result Display & Inhouse Fest",
-    description: "Display of First IA results followed by exciting Inhouse Fest with competitions, games, and cultural performances.",
-    date: new Date("2025-09-27"),
+    title: "First IA Result Display",
+    description: "Display of First Internal Assessment results on notice boards and online portal.",
+    date: new Date(2025, 8, 27),
+    time: "10:00 AM",
+    venue: "Notice Boards",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "Inhouse Fest 2025",
+    description: "Grand Inhouse Fest with competitions, games, cultural performances, and exciting prizes!",
+    date: new Date(2025, 8, 27),
     time: "9:00 AM - 5:00 PM",
     venue: "College Campus",
     category: "cultural",
     maxParticipants: 400,
     isActive: true
   },
-  // October 2025
+
+  // ==================== OCTOBER 2025 ====================
   {
     title: "Vijayadashami Celebration",
-    description: "Celebrate Vijayadashami - the festival of victory of good over evil.",
-    date: new Date("2025-10-01"),
+    description: "Celebrate Vijayadashami - the festival of victory of good over evil with cultural programs.",
+    date: new Date(2025, 9, 1),
     time: "10:00 AM - 12:00 PM",
     venue: "College Premises",
     category: "cultural",
@@ -124,8 +389,8 @@ const events = [
   },
   {
     title: "Gandhi Jayanthi",
-    description: "Commemorate the birth anniversary of Mahatma Gandhi with special programs and activities promoting peace and non-violence.",
-    date: new Date("2025-10-02"),
+    description: "Commemorate the birth anniversary of Mahatma Gandhi with special programs promoting peace and non-violence.",
+    date: new Date(2025, 9, 2),
     time: "9:00 AM - 11:00 AM",
     venue: "Main Auditorium",
     category: "cultural",
@@ -134,8 +399,8 @@ const events = [
   },
   {
     title: "Maharshi Valmiki Jayanthi",
-    description: "Celebration of Maharshi Valmiki Jayanthi with cultural programs.",
-    date: new Date("2025-10-07"),
+    description: "Celebration of Maharshi Valmiki Jayanthi with cultural programs and speeches.",
+    date: new Date(2025, 9, 7),
     time: "10:00 AM - 12:00 PM",
     venue: "Seminar Hall",
     category: "cultural",
@@ -143,9 +408,9 @@ const events = [
     isActive: true
   },
   {
-    title: "Second Internal Assessment (IA)",
-    description: "Second Internal Assessment examinations for all semesters.",
-    date: new Date("2025-10-13"),
+    title: "Second Internal Assessment (IA) - Odd Semester",
+    description: "Second Internal Assessment examinations begin. Runs from 13th to 15th October.",
+    date: new Date(2025, 9, 13),
     time: "10:00 AM - 1:00 PM",
     venue: "Examination Halls",
     category: "academic",
@@ -154,8 +419,8 @@ const events = [
   },
   {
     title: "Naraka Chaturdashi",
-    description: "Celebration of Naraka Chaturdashi - the day before Deepavali.",
-    date: new Date("2025-10-20"),
+    description: "Celebration of Naraka Chaturdashi - the day before Deepavali with traditional rituals.",
+    date: new Date(2025, 9, 20),
     time: "10:00 AM - 12:00 PM",
     venue: "College Premises",
     category: "cultural",
@@ -164,39 +429,40 @@ const events = [
   },
   {
     title: "Balipadyami & Deepavali Celebration",
-    description: "Grand Deepavali celebration with rangoli competition, lamp lighting, and festive activities.",
-    date: new Date("2025-10-22"),
+    description: "Grand Deepavali celebration with rangoli competition, lamp lighting, sweets distribution, and festive activities.",
+    date: new Date(2025, 9, 22),
     time: "10:00 AM - 2:00 PM",
     venue: "College Campus",
     category: "cultural",
     maxParticipants: 400,
     isActive: true
   },
-  // November 2025
+
+  // ==================== NOVEMBER 2025 ====================
   {
-    title: "Kannada Rajyothsava & PUC Fest",
-    description: "Celebrate Karnataka Formation Day with cultural programs showcasing Kannada heritage. Combined with PUC Fest activities.",
-    date: new Date("2025-11-01"),
-    time: "9:00 AM - 5:00 PM",
-    venue: "Main Auditorium & Campus",
+    title: "Kannada Rajyothsava",
+    description: "Celebrate Karnataka Formation Day with cultural programs showcasing rich Kannada heritage and traditions.",
+    date: new Date(2025, 10, 1),
+    time: "9:00 AM - 1:00 PM",
+    venue: "Main Auditorium",
     category: "cultural",
     maxParticipants: 500,
     isActive: true
   },
   {
-    title: "Kanakadasa Jayanthi",
-    description: "Commemorate the birth anniversary of Saint Kanakadasa with devotional programs.",
-    date: new Date("2025-11-08"),
-    time: "10:00 AM - 12:00 PM",
-    venue: "Seminar Hall",
+    title: "PUC Fest 2025",
+    description: "Inter-college PUC Fest with various competitions, cultural events, and performances.",
+    date: new Date(2025, 10, 1),
+    time: "2:00 PM - 6:00 PM",
+    venue: "College Campus",
     category: "cultural",
-    maxParticipants: 200,
+    maxParticipants: 400,
     isActive: true
   },
   {
-    title: "Makeup IA Week",
-    description: "Makeup Internal Assessment for students who missed regular IA examinations.",
-    date: new Date("2025-11-03"),
+    title: "Makeup IA Week Begins",
+    description: "Makeup Internal Assessment for students who missed regular IA examinations. Week starts November 3rd.",
+    date: new Date(2025, 10, 3),
     time: "10:00 AM - 1:00 PM",
     venue: "Examination Halls",
     category: "academic",
@@ -204,9 +470,19 @@ const events = [
     isActive: true
   },
   {
-    title: "Third Internal Assessment (IA)",
-    description: "Third and final Internal Assessment examinations for all semesters.",
-    date: new Date("2025-11-17"),
+    title: "Kanakadasa Jayanthi",
+    description: "Commemorate the birth anniversary of Saint Kanakadasa with devotional programs and cultural events.",
+    date: new Date(2025, 10, 8),
+    time: "10:00 AM - 12:00 PM",
+    venue: "Seminar Hall",
+    category: "cultural",
+    maxParticipants: 200,
+    isActive: true
+  },
+  {
+    title: "Third Internal Assessment (IA) - Odd Semester",
+    description: "Third and final Internal Assessment examinations begin. Runs from 17th to 19th November.",
+    date: new Date(2025, 10, 17),
     time: "10:00 AM - 1:00 PM",
     venue: "Examination Halls",
     category: "academic",
@@ -214,20 +490,62 @@ const events = [
     isActive: true
   },
   {
-    title: "Second IA Result Display",
-    description: "Display of Second Internal Assessment results.",
-    date: new Date("2025-11-30"),
-    time: "10:00 AM",
-    venue: "Notice Boards & Online Portal",
+    title: "Last Working Day - Odd Semester",
+    description: "Last working day of the odd semester 2025-26. Semester wrap-up and farewell activities.",
+    date: new Date(2025, 10, 29),
+    time: "9:00 AM - 4:00 PM",
+    venue: "College Campus",
     category: "academic",
     maxParticipants: 500,
     isActive: true
   },
   {
-    title: "Last Working Day - Odd Semester",
-    description: "Last working day of the odd semester. Farewell activities and semester wrap-up.",
-    date: new Date("2025-11-29"),
-    time: "9:00 AM - 4:00 PM",
+    title: "Second IA Result Display",
+    description: "Display of Second Internal Assessment results on notice boards and online portal.",
+    date: new Date(2025, 10, 30),
+    time: "10:00 AM",
+    venue: "Notice Boards",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+
+  // ==================== DECEMBER 2025 ====================
+  {
+    title: "End Semester Examinations - Odd Semester",
+    description: "Final examinations for odd semester begin. Prepare thoroughly and give your best!",
+    date: new Date(2025, 11, 1),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Examination Halls",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "World AIDS Day Awareness",
+    description: "Awareness program on HIV/AIDS with expert talks, poster exhibition, and pledge ceremony.",
+    date: new Date(2025, 11, 1),
+    time: "2:00 PM - 4:00 PM",
+    venue: "Seminar Hall",
+    category: "seminar",
+    maxParticipants: 200,
+    isActive: true
+  },
+  {
+    title: "Christmas Celebration",
+    description: "Celebrate Christmas with carols, Secret Santa, decoration competition, and festive cheer!",
+    date: new Date(2025, 11, 24),
+    time: "11:00 AM - 2:00 PM",
+    venue: "College Campus",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Winter Vacation Begins",
+    description: "Winter break starts after semester exams. Happy holidays! College reopens in January 2026.",
+    date: new Date(2025, 11, 26),
+    time: "After Exams",
     venue: "College Campus",
     category: "academic",
     maxParticipants: 500,
@@ -245,9 +563,27 @@ const seedEvents = async () => {
     console.log('Cleared existing events');
 
     // Insert new events
-    await Event.insertMany(events);
-    console.log(`Successfully added ${events.length} events!`);
+    const inserted = await Event.insertMany(events);
+    console.log(`\n✅ Successfully added ${inserted.length} events!\n`);
+    
+    // Show events by month
+    console.log('Events by Month (2025):');
+    console.log('========================');
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    const grouped = {};
+    inserted.forEach(e => {
+      const month = new Date(e.date).getMonth();
+      if (!grouped[month]) grouped[month] = [];
+      grouped[month].push(e.title);
+    });
+    
+    Object.keys(grouped).sort((a, b) => a - b).forEach(month => {
+      console.log(`\n📅 ${months[month]} 2025 (${grouped[month].length} events):`);
+      grouped[month].forEach(title => console.log(`   • ${title}`));
+    });
 
+    console.log('\n🎉 All events seeded successfully!\n');
     process.exit(0);
   } catch (error) {
     console.error('Error seeding events:', error);
