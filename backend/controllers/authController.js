@@ -42,11 +42,10 @@ const registerUser = async (req, res) => {
       verificationTokenExpires
     });
 
-    try {
-      await sendVerificationEmail(user, verificationToken);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-    }
+    // Send email in background (don't wait)
+    sendVerificationEmail(user, verificationToken).catch(err => {
+      console.error('Email sending failed:', err);
+    });
 
     res.status(201).json({
       message: 'Registration successful! Please check your email to verify your account.',
