@@ -30,25 +30,16 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const verificationToken = uuidv4();
-    const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
-
     const user = await User.create({
       registrationNumber,
       email,
       password,
       name,
-      verificationToken,
-      verificationTokenExpires
-    });
-
-    // Send email in background (don't wait)
-    sendVerificationEmail(user, verificationToken).catch(err => {
-      console.error('Email sending failed:', err);
+      isVerified: true // Auto-verify for now (email service not working on cloud)
     });
 
     res.status(201).json({
-      message: 'Registration successful! Please check your email to verify your account.',
+      message: 'Registration successful! You can now login.',
       user: {
         id: user._id,
         registrationNumber: user.registrationNumber,
