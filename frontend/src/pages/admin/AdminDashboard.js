@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
 import { FiUsers, FiCalendar, FiCheckCircle, FiClock, FiTrendingUp } from 'react-icons/fi';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 import './Admin.css';
 
 const AdminDashboard = () => {
@@ -32,6 +33,21 @@ const AdminDashboard = () => {
     });
   };
 
+  const COLORS = ['#667eea', '#764ba2', '#38a169', '#d53f8c', '#dd6b20', '#319795', '#718096'];
+
+  const getCategoryColor = (category) => {
+    const colors = {
+      technical: '#3182ce',
+      cultural: '#d53f8c',
+      sports: '#38a169',
+      academic: '#805ad5',
+      workshop: '#dd6b20',
+      seminar: '#319795',
+      other: '#718096'
+    };
+    return colors[category] || colors.other;
+  };
+
   if (loading) {
     return (
       <div className="admin-page">
@@ -42,6 +58,18 @@ const AdminDashboard = () => {
       </div>
     );
   }
+
+  const categoryData = stats?.eventsByCategory?.map(cat => ({
+    name: cat._id || 'Other',
+    value: cat.count,
+    color: getCategoryColor(cat._id)
+  })) || [];
+
+  const registrationTrend = stats?.recentUsers?.map((user, index) => ({
+    name: `User ${index + 1}`,
+    date: new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    count: index + 1
+  })).reverse() || [];
 
   return (
     <div className="admin-page">
@@ -88,6 +116,53 @@ const AdminDashboard = () => {
           <div className="stat-info">
             <h3>{stats?.stats.activeEvents || 0}</h3>
             <p>Active Events</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Charts Section */}
+      <div className="charts-grid">
+        <div className="chart-card">
+          <h3>Events by Category</h3>
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={categoryData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                  outerRadius={100}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {categoryData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="chart-card">
+          <h3>Category Distribution</h3>
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={categoryData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" fill="#667eea">
+                  {categoryData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
@@ -144,51 +219,27 @@ const AdminDashboard = () => {
             )}
           </div>
         </div>
+      </div>
 
-        <div className="dashboard-card">
-          <div className="card-header">
-            <h2>Events by Category</h2>
+      {/* Quick Stats */}
+      <div className="quick-stats">
+        <div className="quick-stat-card">
+          <FiTrendingUp className="quick-stat-icon" />
+          <div>
+            <h4>Total Events</h4>
+            <p>{stats?.stats.totalEvents || 0}</p>
           </div>
-          <div className="card-content">
-            {stats?.eventsByCategory?.length === 0 ? (
-              <p className="empty-text">No events yet</p>
-            ) : (
-              <ul className="category-list">
-                {stats?.eventsByCategory?.map(cat => (
-                  <li key={cat._id}>
-                    <span className="category-name">{cat._id || 'Other'}</span>
-                    <div className="category-bar">
-                      <div 
-                        className="category-fill"
-                        style={{ 
-                          width: `${(cat.count / stats?.stats.totalEvents) * 100}%`,
-                          backgroundColor: getCategoryColor(cat._id)
-                        }}
-                      ></div>
-                    </div>
-                    <span className="category-count">{cat.count}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
+        </div>
+        <div className="quick-stat-card">
+          <FiUsers className="quick-stat-icon" />
+          <div>
+            <h4>Avg. Registrations</h4>
+            <p>{stats?.stats.totalEvents ? Math.round((stats?.upcomingEvents?.reduce((sum, e) => sum + (e.registeredUsers?.length || 0), 0) || 0) / stats.stats.totalEvents) : 0} per event</p>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-const getCategoryColor = (category) => {
-  const colors = {
-    technical: '#3182ce',
-    cultural: '#d53f8c',
-    sports: '#38a169',
-    academic: '#805ad5',
-    workshop: '#dd6b20',
-    seminar: '#319795',
-    other: '#718096'
-  };
-  return colors[category] || colors.other;
 };
 
 export default AdminDashboard;

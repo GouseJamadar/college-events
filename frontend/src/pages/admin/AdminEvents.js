@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
-import { FiPlus, FiEdit2, FiTrash2, FiUsers, FiCalendar, FiX } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiUsers, FiCalendar, FiX, FiDownload } from 'react-icons/fi';
 import './Admin.css';
 
 const AdminEvents = () => {
@@ -45,6 +45,35 @@ const AdminEvents = () => {
     } catch (error) {
       toast.error('Failed to load registrations');
     }
+  };
+
+  const downloadCSV = (eventTitle) => {
+    if (registrations.length === 0) {
+      toast.error('No registrations to download');
+      return;
+    }
+
+    const headers = ['Name', 'Registration Number', 'Email', 'Status'];
+    const rows = registrations.map(user => [
+      user.name,
+      user.registrationNumber,
+      user.email,
+      user.isVerified ? 'Verified' : 'Pending'
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${eventTitle.replace(/\s+/g, '_')}_attendees.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    toast.success('CSV downloaded!');
   };
 
   const handleChange = (e) => {
@@ -319,9 +348,17 @@ const AdminEvents = () => {
           <div className="modal" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Event Registrations</h2>
-              <button className="modal-close" onClick={() => setShowRegistrations(null)}>
-                <FiX />
-              </button>
+              <div className="modal-header-actions">
+                <button 
+                  className="btn btn-success btn-sm"
+                  onClick={() => downloadCSV(events.find(e => e._id === showRegistrations)?.title || 'event')}
+                >
+                  <FiDownload /> Download CSV
+                </button>
+                <button className="modal-close" onClick={() => setShowRegistrations(null)}>
+                  <FiX />
+                </button>
+              </div>
             </div>
             <div className="registrations-list">
               {registrations.length === 0 ? (

@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { FiCalendar, FiMapPin, FiClock, FiUsers, FiArrowLeft, FiCheck } from 'react-icons/fi';
+import { FiCalendar, FiMapPin, FiClock, FiUsers, FiArrowLeft, FiCheck, FiDownload } from 'react-icons/fi';
+import { QRCodeSVG } from 'qrcode.react';
 import './EventDetail.css';
 
 const EventDetail = () => {
@@ -157,6 +158,17 @@ const EventDetail = () => {
               <div className="registered-status">
                 <div className="status-badge success">
                   <FiCheck /> You are registered for this event
+                </div>
+                <div className="qr-section">
+                  <p>Show this QR code at the event:</p>
+                  <div className="qr-code">
+                    <QRCodeSVG 
+                      value={`EVENT:${event._id}|USER:${user?.id}|NAME:${user?.name}|REG:${user?.registrationNumber}`}
+                      size={150}
+                      level="H"
+                    />
+                  </div>
+                  <p className="qr-info">Registration #{user?.registrationNumber}</p>
                 </div>
                 <button className="btn btn-danger" onClick={handleUnregister}>
                   Cancel Registration

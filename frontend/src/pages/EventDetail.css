@@ -149,6 +149,31 @@
   color: #822727;
 }
 
+/* QR Code */
+.qr-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.qr-section p {
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+
+.qr-code {
+  display: inline-block;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.qr-info {
+  font-weight: 600;
+  color: var(--dark);
+  margin-top: 12px;
+}
+
 .participants-section h2 {
   font-size: 1.25rem;
   color: var(--dark);
