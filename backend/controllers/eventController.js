@@ -148,12 +148,6 @@ const registerForEvent = async (req, res) => {
     user.registeredEvents.push(event._id);
     await user.save();
 
-    try {
-      await sendEventRegistrationEmail(user, event);
-    } catch (emailError) {
-      console.error('Event registration email failed:', emailError);
-    }
-
     res.json({ message: 'Successfully registered for event', event });
   } catch (error) {
     console.error(error);
