@@ -10,7 +10,19 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      'http://localhost:3000',
+      'https://college-events-kn3q-git-main-mohammed-gouses-projects.vercel.app',
+      'https://college-events-kn3q.vercel.app'
+    ];
+    if (!origin || allowedOrigins.some(allowed => origin.startsWith(allowed?.replace(/\/$/, '')))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all for now
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
