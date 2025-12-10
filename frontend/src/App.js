@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import AdminLogin from './pages/AdminLogin';
 import VerifyEmail from './pages/VerifyEmail';
 import Events from './pages/Events';
+import EventDetail from './pages/EventDetail';
 import MyEvents from './pages/MyEvents';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
@@ -48,6 +49,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Events />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/events/:id" 
+        element={
+          <ProtectedRoute>
+            <EventDetail />
           </ProtectedRoute>
         } 
       />

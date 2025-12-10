@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { FiCalendar, FiMapPin, FiClock, FiUsers, FiChevronRight, FiChevronDown } from 'react-icons/fi';
 import './Events.css';
@@ -10,7 +10,7 @@ const Events = () => {
   const [expandedMonth, setExpandedMonth] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchEvents();
@@ -32,14 +32,8 @@ const Events = () => {
     }
   };
 
-  const handleRegister = async (eventId) => {
-    try {
-      await api.post(`/events/${eventId}/register`);
-      toast.success('Successfully registered for event!');
-      fetchEvents();
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Registration failed');
-    }
+  const handleEventClick = (eventId) => {
+    navigate(`/events/${eventId}`);
   };
 
   const formatDate = (date) => {
@@ -118,7 +112,11 @@ const Events = () => {
                   <p className="no-events">No events scheduled for this month</p>
                 ) : (
                   monthData.events.map(event => (
-                    <div key={event._id} className="event-card">
+                    <div 
+                      key={event._id} 
+                      className="event-card clickable"
+                      onClick={() => handleEventClick(event._id)}
+                    >
                       <div 
                         className="event-category"
                         style={{ backgroundColor: getCategoryColor(event.category) }}
@@ -136,18 +134,9 @@ const Events = () => {
                         </div>
                       </div>
                       <div className="event-actions">
-                        {event.registeredUsers?.some(u => u._id === user?.id || u === user?.id) ? (
-                          <span className="registered-badge">✓ Registered</span>
-                        ) : event.registeredUsers?.length >= event.maxParticipants ? (
-                          <span className="full-badge">Event Full</span>
-                        ) : (
-                          <button 
-                            className="btn btn-primary"
-                            onClick={() => handleRegister(event._id)}
-                          >
-                            Register Now
-                          </button>
-                        )}
+                        <button className="btn btn-primary">
+                          View Details
+                        </button>
                       </div>
                     </div>
                   ))
