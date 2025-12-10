@@ -1,7 +1,6 @@
+
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { v4: uuidv4 } = require('uuid');
-const { sendVerificationEmail } = require('../utils/sendEmail');
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
@@ -35,7 +34,7 @@ const registerUser = async (req, res) => {
       email,
       password,
       name,
-      isVerified: true // Auto-verify for now (email service not working on cloud)
+      isVerified: true
     });
 
     res.status(201).json({
@@ -183,26 +182,7 @@ const getProfile = async (req, res) => {
 
 const resendVerification = async (req, res) => {
   try {
-    const { email } = req.body;
-
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    if (user.isVerified) {
-      return res.status(400).json({ message: 'Email is already verified' });
-    }
-
-    const verificationToken = uuidv4();
-    user.verificationToken = verificationToken;
-    user.verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
-    await user.save();
-
-    await sendVerificationEmail(user, verificationToken);
-
-    res.json({ message: 'Verification email sent successfully' });
+    res.json({ message: 'Verification not required' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
@@ -216,4 +196,4 @@ module.exports = {
   adminLogin,
   getProfile,
   resendVerification
-};
+}

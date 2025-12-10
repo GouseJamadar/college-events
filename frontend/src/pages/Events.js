@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -11,8 +10,7 @@ const Events = () => {
   const [expandedMonth, setExpandedMonth] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const { user, isVerified } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchEvents();
@@ -97,8 +95,6 @@ const Events = () => {
         </div>
       </div>
 
-
-
       <div className="months-container">
         {Object.entries(groupedEvents).map(([monthIndex, monthData]) => (
           <div key={monthIndex} className="month-card">
@@ -148,7 +144,6 @@ const Events = () => {
                           <button 
                             className="btn btn-primary"
                             onClick={() => handleRegister(event._id)}
-                            disabled={!isVerified}
                           >
                             Register Now
                           </button>
