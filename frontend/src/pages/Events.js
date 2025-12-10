@@ -35,11 +35,6 @@ const Events = () => {
   };
 
   const handleRegister = async (eventId) => {
-    if (!isVerified) {
-      toast.error('Please verify your email first');
-      return;
-    }
-
     try {
       await api.post(`/events/${eventId}/register`);
       toast.success('Successfully registered for event!');
@@ -102,11 +97,7 @@ const Events = () => {
         </div>
       </div>
 
-      {!isVerified && (
-        <div className="verification-warning">
-          <p>⚠️ Please verify your email to register for events</p>
-        </div>
-      )}
+
 
       <div className="months-container">
         {Object.entries(groupedEvents).map(([monthIndex, monthData]) => (
