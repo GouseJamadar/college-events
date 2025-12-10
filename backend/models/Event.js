@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 
+const feedbackSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  rating: { type: Number, min: 1, max: 5 },
+  comment: String,
+  createdAt: { type: Date, default: Date.now }
+});
+
 const eventSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -42,7 +49,8 @@ const eventSchema = new mongoose.Schema({
   image: {
     type: String,
     default: ''
-  }
+  },
+  feedback: [feedbackSchema]
 }, {
   timestamps: true
 });

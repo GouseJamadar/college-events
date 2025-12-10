@@ -10,7 +10,8 @@ const {
   registerForEvent,
   unregisterFromEvent,
   getMyEvents,
-  getEventsGroupedByMonth
+  getEventsGroupedByMonth,
+  addFeedback
 } = require('../controllers/eventController');
 const { protect, admin } = require('../middleware/auth');
 
@@ -26,5 +27,6 @@ router.delete('/:id', protect, admin, deleteEvent);
 
 router.post('/:id/register', protect, registerForEvent);
 router.post('/:id/unregister', protect, unregisterFromEvent);
+router.post('/:id/feedback', protect, addFeedback);
 
 module.exports = router;

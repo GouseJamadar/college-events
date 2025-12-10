@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiMenu, FiX, FiUser, FiLogOut, FiCalendar, FiHome } from 'react-icons/fi';
+import { useTheme } from '../context/ThemeContext';
+import { FiMenu, FiX, FiUser, FiLogOut, FiCalendar, FiHome, FiMoon, FiSun } from 'react-icons/fi';
 import './Navbar.css';
 
 const Navbar = () => {
   const { user, logout, config, isAdmin } = useAuth();
+  const { darkMode, toggleDarkMode } = useTheme();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,6 +55,9 @@ const Navbar = () => {
               )}
               <div className="nav-user">
                 <span className="user-name">{user.name || user.registrationNumber}</span>
+                <button className="theme-toggle" onClick={toggleDarkMode} title={darkMode ? 'Light Mode' : 'Dark Mode'}>
+                  {darkMode ? <FiSun /> : <FiMoon />}
+                </button>
                 <button className="btn-logout" onClick={handleLogout}>
                   <FiLogOut /> Logout
                 </button>

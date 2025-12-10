@@ -233,6 +233,41 @@ const getEventsGroupedByMonth = async (req, res) => {
   }
 };
 
+const addFeedback = async (req, res) => {
+  try {
+    const { rating, comment } = req.body;
+    const event = await Event.findById(req.params.id);
+
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    // Check if event has ended
+    if (new Date(event.date) > new Date()) {
+      return res.status(400).json({ message: 'Can only give feedback after event ends' });
+    }
+
+    // Check if user was registered
+    if (!event.registeredUsers.includes(req.user._id)) {
+      return res.status(400).json({ message: 'Only registered participants can give feedback' });
+    }
+
+    // Check if already gave feedback
+    const existingFeedback = event.feedback.find(f => f.user.toString() === req.user._id.toString());
+    if (existingFeedback) {
+      return res.status(400).json({ message: 'You have already given feedback' });
+    }
+
+    event.feedback.push({ user: req.user._id, rating, comment });
+    await event.save();
+
+    res.json({ message: 'Feedback submitted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 module.exports = {
   createEvent,
   getAllEvents,
@@ -243,5 +278,6 @@ module.exports = {
   registerForEvent,
   unregisterFromEvent,
   getMyEvents,
-  getEventsGroupedByMonth
+  getEventsGroupedByMonth,
+  addFeedback
 };

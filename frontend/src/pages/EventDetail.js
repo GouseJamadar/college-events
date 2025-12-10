@@ -3,8 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { FiCalendar, FiMapPin, FiClock, FiUsers, FiArrowLeft, FiCheck, FiDownload } from 'react-icons/fi';
-import { QRCodeSVG } from 'qrcode.react';
+import { FiCalendar, FiMapPin, FiClock, FiUsers, FiArrowLeft, FiCheck, FiStar } from 'react-icons/fi';
 import './EventDetail.css';
 
 const EventDetail = () => {
@@ -14,6 +13,9 @@ const EventDetail = () => {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [registering, setRegistering] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
     fetchEvent();
@@ -53,6 +55,23 @@ const EventDetail = () => {
       toast.error(error.response?.data?.message || 'Failed to unregister');
     }
   };
+
+  const handleFeedback = async () => {
+    try {
+      await api.post(`/events/${id}/feedback`, { rating, comment });
+      toast.success('Feedback submitted!');
+      setShowFeedback(false);
+      fetchEvent();
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to submit feedback');
+    }
+  };
+
+  const isEventEnded = new Date(event?.date) < new Date();
+  const hasGivenFeedback = event?.feedback?.some(f => f.user === user?.id || f.user?._id === user?.id);
+  const averageRating = event?.feedback?.length > 0 
+    ? (event.feedback.reduce((sum, f) => sum + f.rating, 0) / event.feedback.length).toFixed(1)
+    : null;
 
   const isRegistered = event?.registeredUsers?.some(
     u => u._id === user?.id || u === user?.id
@@ -159,17 +178,6 @@ const EventDetail = () => {
                 <div className="status-badge success">
                   <FiCheck /> You are registered for this event
                 </div>
-                <div className="qr-section">
-                  <p>Show this QR code at the event:</p>
-                  <div className="qr-code">
-                    <QRCodeSVG 
-                      value={`EVENT:${event._id}|USER:${user?.id}|NAME:${user?.name}|REG:${user?.registrationNumber}`}
-                      size={150}
-                      level="H"
-                    />
-                  </div>
-                  <p className="qr-info">Registration #{user?.registrationNumber}</p>
-                </div>
                 <button className="btn btn-danger" onClick={handleUnregister}>
                   Cancel Registration
                 </button>
@@ -199,6 +207,63 @@ const EventDetail = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Feedback Section */}
+          {isEventEnded && isRegistered && (
+            <div className="feedback-section">
+              <h2><FiStar /> Event Feedback {averageRating && `(${averageRating}/5)`}</h2>
+              
+              {hasGivenFeedback ? (
+                <p className="feedback-submitted">✓ You have already submitted feedback</p>
+              ) : (
+                <>
+                  {!showFeedback ? (
+                    <button className="btn btn-primary" onClick={() => setShowFeedback(true)}>
+                      Give Feedback
+                    </button>
+                  ) : (
+                    <div className="feedback-form">
+                      <div className="rating-input">
+                        <label>Rating:</label>
+                        <div className="stars">
+                          {[1, 2, 3, 4, 5].map(star => (
+                            <button 
+                              key={star}
+                              className={`star-btn ${rating >= star ? 'active' : ''}`}
+                              onClick={() => setRating(star)}
+                            >
+                              ★
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <textarea
+                        placeholder="Share your experience (optional)"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                      />
+                      <div className="feedback-actions">
+                        <button className="btn btn-secondary" onClick={() => setShowFeedback(false)}>Cancel</button>
+                        <button className="btn btn-primary" onClick={handleFeedback}>Submit Feedback</button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {event.feedback?.length > 0 && (
+                <div className="feedback-list">
+                  <h3>Reviews ({event.feedback.length})</h3>
+                  {event.feedback.slice(0, 5).map((fb, i) => (
+                    <div key={i} className="feedback-item">
+                      <div className="feedback-rating">{'★'.repeat(fb.rating)}{'☆'.repeat(5 - fb.rating)}</div>
+                      {fb.comment && <p>{fb.comment}</p>}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

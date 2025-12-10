@@ -209,3 +209,110 @@ input, select, textarea {
     font-size: 13px;
   }
 }
+
+/* Dark Mode */
+body.dark-mode {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e2e8f0;
+}
+
+body.dark-mode .navbar {
+  background: #1a1a2e;
+  border-bottom: 1px solid #2d3748;
+}
+
+body.dark-mode .navbar-brand {
+  color: #667eea;
+}
+
+body.dark-mode .nav-link {
+  color: #a0aec0;
+}
+
+body.dark-mode .nav-link:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+body.dark-mode .card,
+body.dark-mode .month-card,
+body.dark-mode .event-card,
+body.dark-mode .auth-container,
+body.dark-mode .dashboard-card,
+body.dark-mode .stat-card,
+body.dark-mode .chart-card,
+body.dark-mode .event-detail-card,
+body.dark-mode .my-event-card,
+body.dark-mode .search-box,
+body.dark-mode .filter-options,
+body.dark-mode .admin-table-container,
+body.dark-mode .modal {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea,
+body.dark-mode .search-box input {
+  background: #2d3748;
+  border-color: #4a5568;
+  color: #e2e8f0;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group select:focus {
+  border-color: #667eea;
+}
+
+body.dark-mode .month-header {
+  border-bottom: 1px solid #2d3748;
+}
+
+body.dark-mode .month-header:hover {
+  background: #2d3748;
+}
+
+body.dark-mode .event-card {
+  background: #2d3748;
+}
+
+body.dark-mode .event-card:hover {
+  background: #374151;
+}
+
+body.dark-mode .admin-table th {
+  background: #2d3748;
+}
+
+body.dark-mode .admin-table td {
+  border-color: #4a5568;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3 {
+  color: #f7fafc;
+}
+
+body.dark-mode .stat-info p,
+body.dark-mode .event-description,
+body.dark-mode .info-label {
+  color: #a0aec0;
+}
+
+body.dark-mode .hero {
+  background: transparent;
+}
+
+body.dark-mode .features {
+  background: #1e293b;
+}
+
+body.dark-mode .feature-card {
+  background: #2d3748;
+}
+
+body.dark-mode .cta {
+  background: var(--gradient);
+}

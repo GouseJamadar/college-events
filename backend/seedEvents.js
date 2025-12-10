@@ -380,6 +380,136 @@ const events = [
     category: "cultural",
     maxParticipants: 400,
     isActive: true
+  },
+
+  // ==================== JANUARY 2026 ====================
+  {
+    title: "New Year Celebration 2026",
+    description: "Welcome 2026 with joy! Cultural performances, games, and new year resolutions board.",
+    date: new Date(2026, 0, 1),
+    time: "10:00 AM - 12:00 PM",
+    venue: "College Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Even Semester 2026 Begins",
+    description: "College reopens for even semester. Regular classes commence for II, IV, and VI semester.",
+    date: new Date(2026, 0, 5),
+    time: "9:00 AM",
+    venue: "All Classrooms",
+    category: "academic",
+    maxParticipants: 500,
+    isActive: true
+  },
+  {
+    title: "National Youth Day 2026",
+    description: "Celebrate Swami Vivekananda Jayanthi with inspirational talks and debates.",
+    date: new Date(2026, 0, 12),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Seminar Hall",
+    category: "cultural",
+    maxParticipants: 300,
+    isActive: true
+  },
+  {
+    title: "Republic Day Celebration 2026",
+    description: "Celebrate India's 77th Republic Day with flag hoisting, parade, and cultural programs.",
+    date: new Date(2026, 0, 26),
+    time: "8:00 AM - 12:00 PM",
+    venue: "College Ground",
+    category: "cultural",
+    maxParticipants: 500,
+    isActive: true
+  },
+
+  // ==================== FEBRUARY 2026 ====================
+  {
+    title: "Tech Fest 2026",
+    description: "Annual Technical Festival with coding competitions, hackathons, and project exhibitions.",
+    date: new Date(2026, 1, 6),
+    time: "9:00 AM - 5:00 PM",
+    venue: "College Campus",
+    category: "technical",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Valentine's Week Celebration",
+    description: "Rose Day, Friendship Day activities with fun events and gift exchanges.",
+    date: new Date(2026, 1, 7),
+    time: "11:00 AM - 2:00 PM",
+    venue: "College Campus",
+    category: "cultural",
+    maxParticipants: 300,
+    isActive: true
+  },
+
+  // ==================== MARCH 2026 ====================
+  {
+    title: "International Women's Day 2026",
+    description: "Celebrate women achievers with inspiring talks and cultural programs.",
+    date: new Date(2026, 2, 8),
+    time: "10:00 AM - 1:00 PM",
+    venue: "Main Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Holi Celebration 2026",
+    description: "Festival of colors! Celebrate with organic colors, music, dance, and sweets.",
+    date: new Date(2026, 2, 3),
+    time: "10:00 AM - 1:00 PM",
+    venue: "College Ground",
+    category: "cultural",
+    maxParticipants: 500,
+    isActive: true
+  },
+
+  // ==================== APRIL 2026 ====================
+  {
+    title: "Annual Sports Meet 2026",
+    description: "Inter-class sports competition with athletics, cricket, volleyball, and more!",
+    date: new Date(2026, 3, 4),
+    time: "8:00 AM - 5:00 PM",
+    venue: "Sports Ground",
+    category: "sports",
+    maxParticipants: 400,
+    isActive: true
+  },
+  {
+    title: "Annual Day 2026",
+    description: "Grand Annual Day celebration with cultural performances and prize distribution.",
+    date: new Date(2026, 3, 25),
+    time: "4:00 PM - 9:00 PM",
+    venue: "Main Auditorium",
+    category: "cultural",
+    maxParticipants: 600,
+    isActive: true
+  },
+
+  // ==================== MAY 2026 ====================
+  {
+    title: "Project Exhibition 2026",
+    description: "Final year project exhibition showcasing innovative projects to industry experts.",
+    date: new Date(2026, 4, 2),
+    time: "10:00 AM - 4:00 PM",
+    venue: "Exhibition Hall",
+    category: "technical",
+    maxParticipants: 200,
+    isActive: true
+  },
+  {
+    title: "Farewell Party 2026",
+    description: "Bid farewell to outgoing students with performances and memories.",
+    date: new Date(2026, 4, 16),
+    time: "3:00 PM - 7:00 PM",
+    venue: "Main Auditorium",
+    category: "cultural",
+    maxParticipants: 400,
+    isActive: true
   }
 ];
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
-import { FiPlus, FiEdit2, FiTrash2, FiUsers, FiCalendar, FiX, FiDownload } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiUsers, FiCalendar, FiX, FiDownload, FiFileText } from 'react-icons/fi';
 import './Admin.css';
 
 const AdminEvents = () => {
@@ -74,6 +74,48 @@ const AdminEvents = () => {
     a.click();
     window.URL.revokeObjectURL(url);
     toast.success('CSV downloaded!');
+  };
+
+  const exportAllEventsPDF = () => {
+    const printContent = `
+      <html>
+      <head>
+        <title>All Events - KLE BCA Hubli</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 40px; }
+          h1 { color: #667eea; text-align: center; }
+          h2 { color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+          .event { margin-bottom: 20px; padding: 15px; background: #f7fafc; border-radius: 8px; }
+          .event h3 { margin: 0 0 10px; color: #333; }
+          .event p { margin: 5px 0; color: #666; }
+          .meta { display: flex; gap: 20px; margin-top: 10px; font-size: 14px; }
+          .meta span { background: #e2e8f0; padding: 4px 12px; border-radius: 4px; }
+          @media print { body { padding: 20px; } }
+        </style>
+      </head>
+      <body>
+        <h1>KLE BCA Hubli - Event Calendar</h1>
+        <p style="text-align: center; color: #666;">Generated on ${new Date().toLocaleDateString()}</p>
+        ${events.map(event => `
+          <div class="event">
+            <h3>${event.title}</h3>
+            <p>${event.description}</p>
+            <div class="meta">
+              <span>📅 ${new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              <span>🕐 ${event.time}</span>
+              <span>📍 ${event.venue}</span>
+              <span>👥 ${event.registeredUsers?.length || 0}/${event.maxParticipants}</span>
+            </div>
+          </div>
+        `).join('')}
+      </body>
+      </html>
+    `;
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    printWindow.print();
   };
 
   const handleChange = (e) => {
@@ -177,9 +219,14 @@ const AdminEvents = () => {
           <h1>Manage Events</h1>
           <p>Create and manage college events</p>
         </div>
-        <button className="btn btn-primary" onClick={() => openModal()}>
-          <FiPlus /> Add Event
-        </button>
+        <div className="header-actions">
+          <button className="btn btn-secondary" onClick={exportAllEventsPDF}>
+            <FiFileText /> Export PDF
+          </button>
+          <button className="btn btn-primary" onClick={() => openModal()}>
+            <FiPlus /> Add Event
+          </button>
+        </div>
       </div>
 
       <div className="events-admin-grid">
